@@ -1,0 +1,4 @@
+regex==2020.7.14
+kubernetes==11.0.0
+logging2==0.1.2
+

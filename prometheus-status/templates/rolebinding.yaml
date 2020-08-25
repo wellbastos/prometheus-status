@@ -1,0 +1,15 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "prometheus-status.serviceAccountName" . }}
+  labels:
+    {{- include "prometheus-status.labels" . | nindent 4 }}
+subjects:
+- kind: ServiceAccount
+  # name: {{ include "prometheus-status.serviceAccountName" . }}
+  name: default
+  namespace: monitoring
+roleRef:
+  kind: Role
+  name: {{ include "prometheus-status.serviceAccountName" . }}
+  apiGroup: rbac.authorization.k8s.io

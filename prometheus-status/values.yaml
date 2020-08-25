@@ -1,0 +1,29 @@
+jobs:
+  - name: prometheus-status
+    image:
+      repository: wellbastos/prometheus-status
+      tag: latest
+      pullPolicy: IfNotPresent
+    schedule:  "*/5 * * * *"
+    resources:
+      limits:
+        cpu: 50m
+        memory: 50Mi
+      requests:
+        cpu: 50m
+        memory: 50Mi
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 3
+    concurrencyPolicy: Forbid
+    restartPolicy: OnFailure
+    nodeSelector: {}
+    tolerations: {}
+    affinity: {}
+
+imagePullSecrets: []
+nameOverride: "prometheus-status"
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: prometheus-status
